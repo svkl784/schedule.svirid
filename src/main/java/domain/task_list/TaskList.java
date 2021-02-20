@@ -22,9 +22,9 @@ public final class TaskList {
         Collections.sort(taskList, (o1, o2) -> Collator.getInstance().compare(o1, o2));
     }
 
-    public static void deleteList(String taskDescription) {
+    public static void deleteList(String taskName) {
         taskList.stream()
-                .filter(task -> task.getTaskDescription().equals(taskDescription))
+                .filter(task -> task.getTaskName().equals(taskName))
                 .findFirst()
                 .ifPresent(taskList::remove);
     }
@@ -36,12 +36,30 @@ public final class TaskList {
     }
 
     public static void sortByListAndPrint() {
-        taskList.stream()
-//                .filter(taskList -> taskList.length() > 1)
+        taskList
+                .stream()
                 .sorted()
                 .distinct()
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
+    }
+    public static void sortByTaskNameAndPriority(){
+        taskList
+                .stream()
+                .map(task ->"Task name: "+ task.getPriority()+", priority task: "+task.getPriority())
+                .forEach(System.out::println);
+    }
+
+    public static void filterByListLengthTaskName(){
+        taskList
+                .stream()
+                .filter(task -> task.getTaskName().length() > 1)
+                .forEach(System.out::println);
+    }
+
+
+    public static List<Task> getTaskList() {
+        return taskList;
     }
 }
 

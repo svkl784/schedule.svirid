@@ -1,7 +1,10 @@
 package domain.schedule;
 
+import java.text.ParseException;
+
 public interface TaskService {
         void showInfo();
-        void createTask();
-        void addTask();
+        void dateLineNow() throws ParseException;
+        boolean performed();
+
 }

@@ -2,30 +2,62 @@ package domain.schedule;
 import domain.enums.Category;
 import domain.enums.Priority;
 
-import java.util.Objects;
-import java.util.stream.DoubleStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
 
 
 public abstract class Task implements TaskService, Comparable<Task> {
-    private String taskDescription;
+    private String taskName;
     private Priority priority;
     private Category category;
     private String dateLine;
-//    private boolean taskCompleted;
+    private boolean taskPerformed;
 
 
 
     public Task(String task, Priority priority, Category category, String dateLine) {
-        this.taskDescription = task;
+        this.taskName = task;
         this.priority = priority;
         this.category = category;
         this.dateLine = dateLine;
     }
 
+    @Override
+    public boolean performed() {
+        if (!taskPerformed) {
+            taskPerformed = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void dateLineNow() throws ParseException {
+        Timer timer = new Timer();
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("dd.MM.yyyy");
+        Date date = format.parse(dateLine);
+        if (date.equals(new Date())) {
+            System.out.println("Today is day of dateline!");
+        }
+    }
+
+    @Override
+    public void showInfo() {
+        StringBuilder string = new StringBuilder();
+        System.out.println("-------------------------Your task-----------------------------");
+        string.append("Name: ").append(getTaskName()).append("; Priority:").append(getPriority())
+                .append("; Category:").append(getCategory()).append("; Dateline:").append(getDateLine());
+        String newString = string.toString();
+        System.out.println(newString);
+    }
 
     @Override
     public int compareTo(Task task) {
-        int result = this.taskDescription.compareTo(task.getTaskDescription());
+        int result = this.taskName.compareTo(task.getTaskName());
         result = result == 0 ? this.dateLine.compareTo(task.getDateLine()) : result;
         result = result == 0 ? this.category.compareTo(task.getCategory()) : result;
         result = result == 0 ? this.priority.compareTo(task.getPriority()) : result;
@@ -37,7 +69,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task otherTask = (Task) o;
-        return  taskDescription != null && taskDescription.equals(otherTask.taskDescription)
+        return  taskName != null && taskName.equals(otherTask.taskName)
                 && priority == otherTask.priority
                 && category == otherTask.category
                 && dateLine != null && dateLine.equals(otherTask.dateLine);
@@ -47,7 +79,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((taskDescription == null) ? 0 : taskDescription.hashCode());
+        result = prime * result + ((taskName == null) ? 0 : taskName.hashCode());
         result = prime * result + ((category == null) ? 0 : category.hashCode());
         result = prime * result + ((priority == null) ? 0 : priority.hashCode());
         result = prime * result + ((dateLine == null) ? 0 : dateLine.hashCode());
@@ -57,7 +89,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
     @Override
     public String toString() {
         return "Task{" +
-                "Task description='" + taskDescription + '\'' +
+                "Task description='" + taskName + '\'' +
                 ", priority=" + priority +
                 ", category=" + category +
                 ", dateLine='" + dateLine + '\'' +
@@ -65,12 +97,12 @@ public abstract class Task implements TaskService, Comparable<Task> {
     }
 
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getTaskName() {
+        return taskName;
     }
 
-    public void setTaskDescription(String task) {
-        this.taskDescription = task;
+    public void setTaskName(String task) {
+        this.taskName = task;
     }
 
     public Priority getPriority() {
