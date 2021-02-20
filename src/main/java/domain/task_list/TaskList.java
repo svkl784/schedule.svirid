@@ -43,14 +43,23 @@ public final class TaskList {
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
-    public static void sortByTaskNameAndPriority(){
+
+    public static void sortByTaskNameAndPriority() {
         taskList
                 .stream()
-                .map(task ->"Task name: "+ task.getPriority()+", priority task: "+task.getPriority())
+                .map(task -> "Task name: " + task.getPriority() + ", priority task: " + task.getPriority())
                 .forEach(System.out::println);
     }
 
-    public static void filterByListLengthTaskName(){
+    public static void sortByTaskNameAndCategory() {
+        taskList
+                .stream()
+                .map(task -> "Task name: " + task.getPriority() + ", category task: " + task.getCategory())
+                .forEach(System.out::println);
+    }
+
+
+    public static void filterByListLengthTaskName() {
         taskList
                 .stream()
                 .filter(task -> task.getTaskName().length() > 1)
