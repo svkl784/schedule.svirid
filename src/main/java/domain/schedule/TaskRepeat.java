@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TaskRepeat extends Task{
+public class TaskRepeat extends Task {
     String taskDescription;
     String repeatDateTask;
 
@@ -20,7 +20,7 @@ public class TaskRepeat extends Task{
         this.repeatDateTask = repeatDateTask;
         String notRepeat = "NOT REPEAT";
         if (repeatDateTask.equals(notRepeat)) {
-            System.out.println("The event does not repeat");
+            return;
         } else {
             Timer timer = new Timer();
             SimpleDateFormat format = new SimpleDateFormat();
@@ -36,8 +36,12 @@ public class TaskRepeat extends Task{
 
     @Override
     public String toString() {
-        return "Task description='" + taskDescription + '\'' +
-                "RepeatDateTask='" + repeatDateTask + '\'';
+        return "Task name: " + getTaskName() + '\n' +
+                "Task priority: " + getPriority() + '\n' +
+                "Task category: " + getCategory() + '\n' +
+                "Task dateline: " + getDateLine() + '\n' +
+                "Task description: " + taskDescription + '\n' +
+                "RepeatDateTask: " + repeatDateTask + '\n';
     }
 
     public String getTaskDescription() {

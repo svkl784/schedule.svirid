@@ -14,7 +14,7 @@ public class Application {
                 "Event",
                 Priority.HIGH,
                 Category.WORK,
-                "25/02/2021",
+                "21/02/2021",
                 "Meeting with the boss in the office",
                 "05/03/2021");
         TaskRepeat taskRepeat2 = new TaskRepeat(
@@ -34,7 +34,6 @@ public class Application {
         TaskList.addList(taskRepeat1);
         TaskList.addList(taskRepeat2);
         TaskList.addList(taskRepeat3);
-        System.out.println(taskRepeat3);
         TaskList.printList();
         TaskList.sortByTaskNameAndCategory();
         TaskList.printList();
