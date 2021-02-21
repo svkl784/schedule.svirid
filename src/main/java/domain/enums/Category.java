@@ -1,10 +1,10 @@
 package domain.enums;
 
 public enum Category {
-        IN_WORK("In work"),
-        POSTPONED("Postponed"),
-        VERIFY("Verify"),
-        PERFORMED("Performed");
+        WORK("Work"),
+        STUDY ("Study"),
+        FAMILY("Family"),
+        PERSONAL("Personal");
         private String category;
 
         Category(String category) {

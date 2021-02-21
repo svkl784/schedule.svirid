@@ -32,6 +32,7 @@ public final class TaskList {
     public static void printList() {
         System.out.println("------------------TaskList----------------------");
         taskList.forEach(System.out::println);
+        System.out.println("------------------------------------------------");
 
     }
 
@@ -47,14 +48,14 @@ public final class TaskList {
     public static void sortByTaskNameAndPriority() {
         taskList
                 .stream()
-                .map(task -> "Task name: " + task.getPriority() + ", priority task: " + task.getPriority())
+                .map(task -> "Task name: " + task.getTaskName() + ", priority task: " + task.getPriority())
                 .forEach(System.out::println);
     }
 
     public static void sortByTaskNameAndCategory() {
         taskList
                 .stream()
-                .map(task -> "Task name: " + task.getPriority() + ", category task: " + task.getCategory())
+                .map(task -> "Task name: " + task.getTaskName() + ", category task: " + task.getCategory())
                 .forEach(System.out::println);
     }
 

@@ -17,8 +17,8 @@ public abstract class Task implements TaskService, Comparable<Task> {
 
 
 
-    public Task(String task, Priority priority, Category category, String dateLine) {
-        this.taskName = task;
+    public Task(String taskName, Priority priority, Category category, String dateLine) {
+        this.taskName = taskName;
         this.priority = priority;
         this.category = category;
         this.dateLine = dateLine;

@@ -18,15 +18,20 @@ public class TaskRepeat extends Task{
         super(task, priority, category, dateLine);
         this.taskDescription = taskDescription;
         this.repeatDateTask = repeatDateTask;
-        Timer timer = new Timer();
-        SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("dd.MM.yyyy");
-        Date date= format.parse(repeatDateTask);
-        timer.schedule(new TimerTask() {
-            public void run() {
-                System.out.println("Task repeat! "+ new Date());
-            }
-        }, date);
+        String notRepeat = "NOT REPEAT";
+        if (repeatDateTask.equals(notRepeat)) {
+            System.out.println("The event does not repeat");
+        } else {
+            Timer timer = new Timer();
+            SimpleDateFormat format = new SimpleDateFormat();
+            format.applyPattern("dd/MM/yyyy");
+            Date date = format.parse(repeatDateTask);
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    System.out.println("Task repeat! " + new Date());
+                }
+            }, date);
+        }
     }
 
     @Override
