@@ -48,14 +48,14 @@ public final class TaskList {
     public static void sortByTaskNameAndPriority() {
         taskList
                 .stream()
-                .map(task -> "Task name: " + task.getTaskName() + ", priority task: " + task.getPriority())
+                .map(task -> "Task name: " + task.getTaskName() + "; Priority task: " + task.getPriority())
                 .forEach(System.out::println);
     }
 
     public static void sortByTaskNameAndCategory() {
         taskList
                 .stream()
-                .map(task -> "Task name: " + task.getTaskName() + ", category task: " + task.getCategory())
+                .map(task -> "Task name: " + task.getTaskName() + "; Category task: " + task.getCategory())
                 .forEach(System.out::println);
     }
 
@@ -71,6 +71,7 @@ public final class TaskList {
     public static List<Task> getTaskList() {
         return taskList;
     }
+
 }
 
 

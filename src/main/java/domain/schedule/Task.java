@@ -88,12 +88,11 @@ public abstract class Task implements TaskService, Comparable<Task> {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "Task description='" + taskName + '\'' +
-                ", priority=" + priority +
-                ", category=" + category +
-                ", dateLine='" + dateLine + '\'' +
-                '}';
+        return "-------------------------Task-----------------------" +
+                "Task name: "+taskName+"\n"+
+                "Task priority: " + priority +"\n"+
+                "Task category: " + category +"\n"+
+                "Task dateLine: " + dateLine + "\n";
     }
 
 
