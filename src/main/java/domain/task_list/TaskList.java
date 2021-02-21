@@ -30,9 +30,9 @@ public final class TaskList {
     }
 
     public static void printList() {
-        System.out.println("------------------TaskList----------------------");
+        System.out.println("----------------------TaskList------------------------");
         taskList.forEach(System.out::println);
-        System.out.println("------------------------------------------------");
+        System.out.println("------------------------------------------------------");
 
     }
 

@@ -15,7 +15,8 @@ public abstract class Task implements TaskService, Comparable<Task> {
     private String dateLine;
     private boolean taskPerformed;
 
-
+    public Task() {
+    }
 
     public Task(String taskName, Priority priority, Category category, String dateLine) {
         this.taskName = taskName;
@@ -23,6 +24,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
         this.category = category;
         this.dateLine = dateLine;
     }
+
 
     @Override
     public boolean performed() {
