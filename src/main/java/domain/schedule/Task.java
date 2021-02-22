@@ -1,6 +1,7 @@
 package domain.schedule;
 import domain.enums.Category;
 import domain.enums.Priority;
+import domain.exception.DatelineException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,10 +20,11 @@ public abstract class Task implements TaskService, Comparable<Task> {
     }
 
     public Task(String taskName, Priority priority, Category category, String dateLine) {
-        this.taskName = taskName;
-        this.priority = priority;
-        this.category = category;
-        this.dateLine = dateLine;
+
+            this.taskName = taskName;
+            this.priority = priority;
+            this.category = category;
+            this.dateLine = dateLine;
     }
 
 
@@ -37,13 +39,19 @@ public abstract class Task implements TaskService, Comparable<Task> {
     }
 
     @Override
-    public void dateLineNow() throws ParseException {
-        Timer timer = new Timer();
-        SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("dd.MM.yyyy");
-        Date date = format.parse(dateLine);
-        if (date.equals(new Date())) {
-            System.out.println("Today is day of dateline!");
+    public void dateLineNow() {
+        try {
+            Timer timer = new Timer();
+            SimpleDateFormat format = new SimpleDateFormat();
+            format.applyPattern("dd/MM/yyyy");
+            Date date = format.parse(dateLine);
+            if (date.equals(new Date())) {
+                System.out.println("Today is day of dateline!");
+            }
+        }
+        catch (ParseException e){
+            System.out.println("INCORRECT DATE FORMAT INTRODUCED!!!"+"Task name: "+getTaskName());
+            System.exit(1);
         }
     }
 

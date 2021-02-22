@@ -2,6 +2,7 @@ package application;
 
 import domain.enums.Category;
 import domain.enums.Priority;
+import domain.exception.DatelineException;
 import domain.schedule.CriticalDateline;
 import domain.schedule.Task;
 import domain.schedule.TaskRepeat;
@@ -11,7 +12,7 @@ import domain.task_list.TaskList;
 import java.text.ParseException;
 
 public class Application {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, DatelineException {
         TaskRepeat taskRepeat1 = new TaskRepeat(
                 "Event",
                 Priority.HIGH,

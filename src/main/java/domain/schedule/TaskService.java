@@ -1,5 +1,7 @@
 package domain.schedule;
 
+import domain.exception.DatelineException;
+
 import java.text.ParseException;
 
 public interface TaskService {
