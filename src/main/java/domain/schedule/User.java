@@ -7,12 +7,11 @@ interface UserService {
 
 public class User implements UserService{
     private String userName;
-    private UserId idString;
-    private UserId idInteger;
+    private UserId <String> idString;
+    private UserId <Integer> idInteger;
 
     public User() {
     }
-
 
     public User(String userName, UserId idString, UserId idInteger) {
         this.userName = userName;
@@ -25,6 +24,7 @@ public class User implements UserService{
         this.idString = userBuilder.idString;
         this.idInteger = userBuilder.idInteger;
     }
+
 
 
     public String getUserName() {
@@ -113,5 +113,6 @@ public class User implements UserService{
                 return new User(this);
             }
         }
+
     }
 }

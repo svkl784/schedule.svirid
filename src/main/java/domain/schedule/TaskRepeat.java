@@ -2,6 +2,7 @@ package domain.schedule;
 
 import domain.enums.Category;
 import domain.enums.Priority;
+import domain.exception.ParseExceptionDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,27 +15,31 @@ public class TaskRepeat extends Task {
     String repeatDateTask;
 
     public TaskRepeat(String task, Priority priority, Category category, String dateLine,
-                      String taskDescription, String repeatDateTask) throws ParseException {
+                      String taskDescription, String repeatDateTask)  {
         super(task, priority, category, dateLine);
-        this.taskDescription = taskDescription;
-        this.repeatDateTask = repeatDateTask;
-        String notRepeat = "NOT REPEAT";
-        if (repeatDateTask.equals(notRepeat)) {
-            return;
-        } else {
-            Timer timer = new Timer();
-            SimpleDateFormat format = new SimpleDateFormat();
-            format.applyPattern("dd/MM/yyyy");
-            Date date = format.parse(repeatDateTask);
-            timer.schedule(new TimerTask() {
-                public void run() {
-                    System.out.println("Task repeat! " + new Date());
-                }
-            }, date);
+        try {
+            this.taskDescription = taskDescription;
+            this.repeatDateTask = repeatDateTask;
+            String notRepeat = "NOT REPEAT";
+            if (repeatDateTask.equals(notRepeat)) {
+                return;
+            } else {
+                Timer timer = new Timer();
+                SimpleDateFormat format = new SimpleDateFormat();
+                format.applyPattern("dd/MM/yyyy");
+                Date date = format.parse(repeatDateTask);
+                timer.schedule(new TimerTask() {
+                    public void run() {
+                        System.out.println("Task repeat! " + new Date());
+                    }
+                }, date);
+            }
+        }
+        catch (ParseException e){
+            System.out.println("INCORRECT DATE FORMAT INTRODUCED!!!"+"Task name: "+getTaskName());
+            System.exit(1);
         }
     }
-
-
 
     @Override
     public String toString() {
