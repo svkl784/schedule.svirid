@@ -1,7 +1,7 @@
 package domain.schedule;
 
 
-public class User  {
+public class User {
     private final String name;
     private final String login;
     private final int password;
@@ -11,7 +11,6 @@ public class User  {
         login = (String) builder.login;
         password = (int) builder.password;
     }
-
 
     public static class Builder<T, V> {
         private final String name;
@@ -28,13 +27,23 @@ public class User  {
             return new User(this);
         }
 
+
+        public void userInfo() {
+            System.out.println(
+                    "---------------Information on user--------------------" + '\n' +
+                            "Name: " + name + '\n' +
+                            "Login: " + login + '\n' +
+                            "Password: " + "******" + '\n' +
+                            "-----------------------------------------------------");
+        }
+
+
         @Override
         public String toString() {
-            return "---------------Information on user--------------------" + '\n' +
+            return "Builder: " + '\n' +
                     "Name: " + name + '\n' +
                     "Login: " + login + '\n' +
-                    "Password: " + "******" + '\n' +
-                    "-----------------------------------------------------";
+                    "Password: " + password + '\n';
         }
 
         @Override
@@ -58,6 +67,7 @@ public class User  {
         }
 
     }
+
 
     public String getName() {
         return name;

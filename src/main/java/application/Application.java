@@ -46,6 +46,7 @@ public class Application {
                 "Nataliya",
                 "svk",
                 465455);
-        System.out.println(user);
+        user.userInfo();
+
     }
 }
