@@ -2,7 +2,6 @@ package application;
 
 import domain.enums.Category;
 import domain.enums.Priority;
-import domain.exception.DatelineException;
 import domain.schedule.*;
 import domain.schedule.User;
 import domain.task_list.TaskList;
@@ -10,7 +9,8 @@ import domain.task_list.TaskList;
 import java.text.ParseException;
 
 public class Application {
-    public static void main(String[] args) throws ParseException, DatelineException {
+    public static void main(String[] args) throws ParseException  {
+        System.out.println();
         TaskRepeat taskRepeat1 = new TaskRepeat(
                 "Event",
                 Priority.HIGH,
@@ -42,18 +42,10 @@ public class Application {
         TaskList.printList();
         TaskList.filterByListLengthTaskName();
         TaskList.printList();
-        User.Builder <String, Integer> user = new User.Builder<String,Integer>(
+        User.Builder <String, Integer> user = new User.Builder<>(
                 "Nataliya",
                 "svk",
                 465455);
-        User.Builder <String, Integer> user1 = new User.Builder<String,Integer>(
-                "Alexander",
-                "kim",
-                527216);
-
-
-
+        System.out.println(user);
     }
-
-
 }

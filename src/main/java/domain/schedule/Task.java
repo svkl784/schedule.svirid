@@ -1,7 +1,6 @@
 package domain.schedule;
 import domain.enums.Category;
 import domain.enums.Priority;
-import domain.exception.DatelineException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

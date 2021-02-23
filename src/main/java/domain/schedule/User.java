@@ -6,7 +6,6 @@ public class User  {
     private final String login;
     private final int password;
 
-
     public User(Builder builder) {
         name = builder.name;
         login = (String) builder.login;
@@ -34,7 +33,7 @@ public class User  {
             return "---------------Information on user--------------------" + '\n' +
                     "Name: " + name + '\n' +
                     "Login: " + login + '\n' +
-                    "Password: " + password + '\n' +
+                    "Password: " + "******" + '\n' +
                     "-----------------------------------------------------";
         }
 
