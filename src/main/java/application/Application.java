@@ -3,9 +3,7 @@ package application;
 import domain.enums.Category;
 import domain.enums.Priority;
 import domain.exception.DatelineException;
-import domain.schedule.CriticalDateline;
-import domain.schedule.Task;
-import domain.schedule.TaskRepeat;
+import domain.schedule.*;
 import domain.schedule.User;
 import domain.task_list.TaskList;
 
@@ -44,6 +42,16 @@ public class Application {
         TaskList.printList();
         TaskList.filterByListLengthTaskName();
         TaskList.printList();
+        User.Builder <String, Integer> user = new User.Builder<String,Integer>(
+                "Nataliya",
+                "svk",
+                465455);
+        User.Builder <String, Integer> user1 = new User.Builder<String,Integer>(
+                "Alexander",
+                "kim",
+                527216);
+
+
 
     }
 
