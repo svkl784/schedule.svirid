@@ -45,7 +45,7 @@ public class TaskRepeat extends Task {
         return "Task name: " + getTaskName() + '\n' +
                 "Task priority: " + getPriority() + '\n' +
                 "Task category: " + getCategory() + '\n' +
-                "Task dateline: " + getDateLine() + '\n' +
+                "Task dateline: " + getDeadline() + '\n' +
                 "Task description: " + taskDescription + '\n' +
                 "RepeatDateTask: " + repeatDateTask + '\n';
     }

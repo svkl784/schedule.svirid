@@ -32,8 +32,8 @@ public class Application {
                 "04/03/2021",
                 "Exam in philosophy",
                 "NOT REPEAT");
-        CriticalDateline criticalDateline1 = new CriticalDateline(taskRepeat2,"28/02/2021");
-        System.out.println(criticalDateline1);
+        CriticalDeadline criticalDeadline1 = new CriticalDeadline(taskRepeat2,"28/02/2021");
+        System.out.println(criticalDeadline1);
         TaskList.addList(taskRepeat1);
         TaskList.addList(taskRepeat2);
         TaskList.addList(taskRepeat3);

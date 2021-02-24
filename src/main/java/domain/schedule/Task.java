@@ -12,18 +12,18 @@ public abstract class Task implements TaskService, Comparable<Task> {
     private String taskName;
     private Priority priority;
     private Category category;
-    private String dateLine;
+    private String deadline;
     private boolean taskPerformed;
 
     public Task() {
     }
 
-    public Task(String taskName, Priority priority, Category category, String dateLine) {
+    public Task(String taskName, Priority priority, Category category, String deadline) {
 
             this.taskName = taskName;
             this.priority = priority;
             this.category = category;
-            this.dateLine = dateLine;
+            this.deadline = deadline;
     }
 
 
@@ -43,9 +43,9 @@ public abstract class Task implements TaskService, Comparable<Task> {
             Timer timer = new Timer();
             SimpleDateFormat format = new SimpleDateFormat();
             format.applyPattern("dd/MM/yyyy");
-            Date date = format.parse(dateLine);
+            Date date = format.parse(deadline);
             if (date.equals(new Date())) {
-                System.out.println("Today is day of dateline!");
+                System.out.println("Today is day of deadline!");
             }
         }
         catch (ParseException e){
@@ -59,7 +59,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
         StringBuilder string = new StringBuilder();
         System.out.println("-------------------------Your task-----------------------------");
         string.append("Name: ").append(getTaskName()).append("; Priority:").append(getPriority())
-                .append("; Category:").append(getCategory()).append("; Dateline:").append(getDateLine());
+                .append("; Category:").append(getCategory()).append("; Deadline:").append(getDeadline());
         String newString = string.toString();
         System.out.println(newString);
     }
@@ -67,7 +67,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
     @Override
     public int compareTo(Task task) {
         int result = this.taskName.compareTo(task.getTaskName());
-        result = result == 0 ? this.dateLine.compareTo(task.getDateLine()) : result;
+        result = result == 0 ? this.deadline.compareTo(task.getDeadline()) : result;
         result = result == 0 ? this.category.compareTo(task.getCategory()) : result;
         result = result == 0 ? this.priority.compareTo(task.getPriority()) : result;
         return result;
@@ -81,7 +81,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
         return  taskName != null && taskName.equals(otherTask.taskName)
                 && priority == otherTask.priority
                 && category == otherTask.category
-                && dateLine != null && dateLine.equals(otherTask.dateLine);
+                && deadline != null && deadline.equals(otherTask.deadline);
     }
 
     @Override
@@ -91,7 +91,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
         result = prime * result + ((taskName == null) ? 0 : taskName.hashCode());
         result = prime * result + ((category == null) ? 0 : category.hashCode());
         result = prime * result + ((priority == null) ? 0 : priority.hashCode());
-        result = prime * result + ((dateLine == null) ? 0 : dateLine.hashCode());
+        result = prime * result + ((deadline == null) ? 0 : deadline.hashCode());
         return result;
     }
 
@@ -101,7 +101,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
                 "Task name: "+taskName+"\n"+
                 "Task priority: " + priority +"\n"+
                 "Task category: " + category +"\n"+
-                "Task dateLine: " + dateLine + "\n";
+                "Task deadLine: " + deadline + "\n";
     }
 
 
@@ -129,12 +129,12 @@ public abstract class Task implements TaskService, Comparable<Task> {
         this.category = category;
     }
 
-    public String getDateLine() {
-        return dateLine;
+    public String getDeadline() {
+        return deadline;
     }
 
-    public void setDateLine(String dateLine) {
-        this.dateLine = dateLine;
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
 }
