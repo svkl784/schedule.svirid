@@ -1,6 +1,7 @@
 package domain.schedule;
 import domain.enums.Category;
 import domain.enums.Priority;
+import exception.ParseExceptionDeadLine;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,12 +19,21 @@ public abstract class Task implements TaskService, Comparable<Task> {
     public Task() {
     }
 
-    public Task(String taskName, Priority priority, Category category, String deadline) {
+    public Task(String taskName, Priority priority, Category category, String deadline)  {
+        try {
 
             this.taskName = taskName;
             this.priority = priority;
             this.category = category;
             this.deadline = deadline;
+
+         if (!deadline.matches("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$"))
+            { throw new ParseExceptionDeadLine(deadline);
+            }
+        } catch (ParseExceptionDeadLine e) {
+            System.out.println(e);
+            System.exit(1);
+        }
     }
 
 
