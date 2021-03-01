@@ -29,7 +29,7 @@ public class TaskRepeat extends Task {
                 Date date = format.parse(repeatDateTask);
                 timer.schedule(new TimerTask() {
                     public void run() {
-                        System.out.println("Task repeat! " + new Date());
+                        System.out.println("Today task \""+getTaskName() +"\" repeat! " + new Date());
                     }
                 }, date);
             }
