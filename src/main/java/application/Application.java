@@ -18,8 +18,6 @@ public class Application implements Serializable {
 
         System.out.println("------------Welcome to Natalia's schedule--------------");
         System.out.println();
-//        Scanner scanner = new Scanner(System.in);
-//        File file = new File("schedule.txt");
         try {
             TaskRepeat taskRepeat1 = new TaskRepeat(
                     "Event",
@@ -61,7 +59,6 @@ public class Application implements Serializable {
                     "svk",
                     465455);
             user.userInfo();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
