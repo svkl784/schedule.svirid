@@ -66,7 +66,7 @@ public class Application implements Serializable {
             e.printStackTrace();
         }
         finally {
-            System.out.println("--------------------Good Bye---------------------------");
+            System.out.println("-------------------Good Bye--------------------------");
         }
 
     }
