@@ -2,12 +2,18 @@ package domain.task_list;
 
 import domain.schedule.Task;
 
-
 import java.text.Collator;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public final class TaskList {
     private static final List<Task> taskList = new LinkedList<>();
@@ -68,12 +74,22 @@ public final class TaskList {
                 .forEach(System.out::println);
     }
 
+    public static void timeUntilDeadline() {
+        taskList
+                .stream()
+                .map(task -> task.getDeadline())
+                .forEach(System.out::println);
 
-    public static List<Task> getTaskList() {
-        return taskList;
     }
 
-}
+
+
+    public static List<Task> getTaskList() {
+            return taskList;
+        }
+
+    }
+
 
 
 

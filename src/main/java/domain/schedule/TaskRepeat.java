@@ -3,15 +3,20 @@ package domain.schedule;
 import domain.enums.Category;
 import domain.enums.Priority;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TaskRepeat extends Task {
+public class TaskRepeat extends Task implements Serializable {
     String taskDescription;
     String repeatDateTask;
+
+    public TaskRepeat() {
+    }
 
     public TaskRepeat(String task, Priority priority, Category category, String dateLine,
                       String taskDescription, String repeatDateTask)  {
@@ -29,8 +34,9 @@ public class TaskRepeat extends Task {
                 Date date = format.parse(repeatDateTask);
                 timer.schedule(new TimerTask() {
                     public void run() {
+                        if ((format.format(date)).equals(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()))) {
                         System.out.println("Today task \""+getTaskName() +"\" repeat! " + new Date());
-                    }
+                    }}
                 }, date);
             }
         }
@@ -40,12 +46,14 @@ public class TaskRepeat extends Task {
         }
     }
 
+
+
     @Override
     public String toString() {
         return "Task name: " + getTaskName() + '\n' +
                 "Task priority: " + getPriority() + '\n' +
                 "Task category: " + getCategory() + '\n' +
-                "Task dateline: " + getDeadline() + '\n' +
+                "Task deadline: " + getDeadline() + '\n' +
                 "Task description: " + taskDescription + '\n' +
                 "RepeatDateTask: " + repeatDateTask + '\n';
     }

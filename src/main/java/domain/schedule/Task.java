@@ -3,13 +3,22 @@ import domain.enums.Category;
 import domain.enums.Priority;
 import exception.ParseExceptionDeadLine;
 
+
+import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Timer;
 
 
-public abstract class Task implements TaskService, Comparable<Task> {
+public abstract class Task implements TaskService, Comparable<Task>, Serializable {
     private String taskName;
     private Priority priority;
     private Category category;
@@ -27,7 +36,7 @@ public abstract class Task implements TaskService, Comparable<Task> {
             this.category = category;
             this.deadline = deadline;
 
-         if (!deadline.matches("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$"))
+         if (!deadline.matches("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$")) // сравниниваю верный ли введне формат даты (dd/mm/yyyy)
             { throw new ParseExceptionDeadLine(deadline);
             }
         } catch (ParseExceptionDeadLine e) {
@@ -50,24 +59,35 @@ public abstract class Task implements TaskService, Comparable<Task> {
     @Override
     public void dateLineNow() {
         try {
-            Timer timer = new Timer();
-            SimpleDateFormat format = new SimpleDateFormat();
-            format.applyPattern("dd/MM/yyyy");
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date date = format.parse(deadline);
-            if (date.equals(new Date())) {
-                System.out.println("Today is day of deadline!");
+            System.out.println("--------------------Deadline now----------------------");
+            if ((format.format(date)).equals(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()))) {
+                System.out.println("Today is day of deadline: \""+getTaskName()+"\"");
+            } else {
+                System.out.println("Today there is no deadline!");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate today = LocalDate.now();
+                LocalDate timeUntilDeadline = LocalDate.parse(deadline,formatter);
+                long oneDay  = Duration.between(today.atStartOfDay(), timeUntilDeadline.atStartOfDay()).toDays();
+                System.out.println("The rest of the days before the deadline: "+oneDay+ " day/s");
+//
             }
         }
         catch (ParseException e){
             System.out.println("INCORRECT DATE FORMAT INTRODUCED!!!"+"Task name: "+getTaskName());
             System.exit(1);
         }
+        finally {
+            System.out.println("------------------------------------------------------");
+        }
+
     }
 
     @Override
     public void showInfo() {
         StringBuilder string = new StringBuilder();
-        System.out.println("-------------------------Your task-----------------------------");
+        System.out.println("-------------------------Your task---------------------------");
         string.append("Name: ").append(getTaskName()).append("; Priority:").append(getPriority())
                 .append("; Category:").append(getCategory()).append("; Deadline:").append(getDeadline());
         String newString = string.toString();
