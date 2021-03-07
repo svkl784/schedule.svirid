@@ -1,6 +1,7 @@
 package domain.schedule;
 import domain.enums.Category;
 import domain.enums.Priority;
+import domain.interfaces.TaskService;
 import exception.ParseExceptionDeadLine;
 
 
@@ -11,14 +12,12 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Timer;
 
 
 public abstract class Task implements TaskService, Comparable<Task>, Serializable {
+//    private static final long SERIAL_VERSION_UID = 1L;
     private String taskName;
     private Priority priority;
     private Category category;
@@ -85,13 +84,21 @@ public abstract class Task implements TaskService, Comparable<Task>, Serializabl
     }
 
     @Override
-    public void showInfo() {
+    public void showTask() {
         StringBuilder string = new StringBuilder();
         System.out.println("-------------------------Your task---------------------------");
         string.append("Name: ").append(getTaskName()).append("; Priority:").append(getPriority())
                 .append("; Category:").append(getCategory()).append("; Deadline:").append(getDeadline());
         String newString = string.toString();
         System.out.println(newString);
+    }
+
+    @Override
+    public void createTask(String taskName, Priority priority, Category category, String deadline) {
+        setTaskName(taskName);
+        setPriority(priority);
+        setCategory(category);
+        setDeadline(deadline);
     }
 
     @Override

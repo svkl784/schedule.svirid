@@ -4,16 +4,13 @@ import domain.enums.Category;
 import domain.enums.Priority;
 import domain.schedule.*;
 import domain.schedule.User;
+import domain.serialization.SerializationTask;
 import domain.task_list.TaskList;
 
-import java.io.File;
 import java.io.Serializable;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class Application implements Serializable {
+    public static final String FILENAME = "schedule.txt";
     public static void main(String[] args) {
 
         System.out.println("------------Welcome to Natalia's schedule--------------");
@@ -59,6 +56,8 @@ public class Application implements Serializable {
                     "svk",
                     465455);
             user.userInfo();
+            SerializationTask.writeTasks(TaskList.getTaskList());
+            SerializationTask.readTask(FILENAME);
         } catch (Exception e) {
             e.printStackTrace();
         }
