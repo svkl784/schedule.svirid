@@ -3,26 +3,26 @@ package domain.schedule;
 
 import domain.interfaces.UserService;
 
-public class User {
+public class User  {
     private final String name;
     private final String login;
     private final int password;
 
-    public User(Builder builder) {
-        name = builder.name;
-        login = (String) builder.login;
-        password = (int) builder.password;
+    public User(Builder builder)  {
+            name = builder.name;
+            login = (String) builder.login;
+            password = (int) builder.password;
     }
 
-    public static class Builder<T, V> implements UserService {
+    public static class Builder<T, V> implements UserService   {
         private final String name;
         private final T login;
         private final V password;
 
-        public Builder(String name, T login, V password) {
+        public Builder(String name, T login, V password)  {
             this.name = name;
-            this.login = login;
-            this.password = password;
+                this.login = login;
+                this.password = password;
         }
 
         public User build() {

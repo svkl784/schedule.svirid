@@ -6,6 +6,8 @@ import domain.schedule.*;
 import domain.schedule.User;
 import domain.serialization.SerializationTask;
 import domain.task_list.TaskList;
+import exception.PasswordException;
+
 
 import java.io.Serializable;
 
@@ -54,14 +56,13 @@ public class Application implements Serializable {
             User.Builder<String, Integer> user = new User.Builder<>(
                     "Nataliya",
                     "svk",
-                    465455);
+                    465456);
             user.userInfo();
             SerializationTask.writeTasks(TaskList.getTaskList());
             SerializationTask.readTask(FILENAME);
-        } catch (Exception e) {
+        } catch (Exception e ) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             System.out.println("-------------------Good Bye--------------------------");
         }
 

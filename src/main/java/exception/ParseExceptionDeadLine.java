@@ -8,7 +8,8 @@ public class ParseExceptionDeadLine extends Exception {
 
     @Override
     public String toString() {
-        return "YOU DEADLINE " + deadline +" NOT CORRECT! Correct deadline format \"dd\\mm\\yyyy\""+ '\n' +
-                "Enter the correct deadline!";
+        return "YOU DEADLINE/CRITICAL DEADLINE " + deadline +" NOT CORRECT! Correct deadline/critical deadline format \"dd\\mm\\yyyy\""+ '\n' +
+                "Enter the correct deadline!"+"\n"+
+                "-------------------------------------------------------";
     }
 }
