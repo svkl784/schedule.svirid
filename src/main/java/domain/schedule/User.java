@@ -1,6 +1,8 @@
 package domain.schedule;
 
 
+import domain.interfaces.UserService;
+
 public class User {
     private final String name;
     private final String login;
@@ -12,7 +14,7 @@ public class User {
         password = (int) builder.password;
     }
 
-    public static class Builder<T, V> {
+    public static class Builder<T, V> implements UserService {
         private final String name;
         private final T login;
         private final V password;
@@ -27,7 +29,7 @@ public class User {
             return new User(this);
         }
 
-
+    @Override
         public void userInfo() {
             System.out.println(
                     "---------------Information on user--------------------" + '\n' +

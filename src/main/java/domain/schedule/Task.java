@@ -35,7 +35,7 @@ public abstract class Task implements TaskService, Comparable<Task>, Serializabl
             this.category = category;
             this.deadline = deadline;
 
-         if (!deadline.matches("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$")) // сравниниваю верный ли введне формат даты (dd/mm/yyyy)
+         if (!deadline.matches("^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\\d\\d$")) // сравниниваю верный ли введне формат даты (dd/mm/yyyy)
             { throw new ParseExceptionDeadLine(deadline);
             }
         } catch (ParseExceptionDeadLine e) {
@@ -69,7 +69,7 @@ public abstract class Task implements TaskService, Comparable<Task>, Serializabl
                 LocalDate today = LocalDate.now();
                 LocalDate timeUntilDeadline = LocalDate.parse(deadline,formatter);
                 long oneDay  = Duration.between(today.atStartOfDay(), timeUntilDeadline.atStartOfDay()).toDays();
-                System.out.println("The rest of the days before the deadline: "+oneDay+ " day/s");
+                System.out.println("The rest of the days \""+getTaskName()+ "\" before the deadline: "+oneDay+ " day/s");
 //
             }
         }

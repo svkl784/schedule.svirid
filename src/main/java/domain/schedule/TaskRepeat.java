@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class TaskRepeat extends Task implements Serializable {
+public class TaskRepeat extends Task {
     String taskDescription;
     String repeatDateTask;
 
