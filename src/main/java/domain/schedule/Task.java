@@ -17,7 +17,7 @@ import java.util.Date;
 
 
 public abstract class Task implements TaskService, Comparable<Task>, Serializable {
-//    private static final long SERIAL_VERSION_UID = 1L;
+    private static final long SERIAL_VERSION_UID = 1L;
     private String taskName;
     private Priority priority;
     private Category category;

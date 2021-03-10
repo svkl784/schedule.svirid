@@ -13,26 +13,26 @@ public class SerializationTask {
     }
 
     public static void writeTasks(List<Task> taskList) {
-        SerializationWriteAndRead serializationWrite = new SerializationWriteAndRead();
-        SerializationWriteAndRead.writeObject(taskList, FILENAME);
+        SerializationAndDeserialization serialization = new SerializationAndDeserialization();
+        SerializationAndDeserialization.SerializationObject(taskList, FILENAME);
 
     }
 
     public static void readTask(String fileName) {
         try {
-            SerializationWriteAndRead serializationRead = new SerializationWriteAndRead();
-            serializationRead.readObject(FILENAME);
+            SerializationAndDeserialization deserialization = new SerializationAndDeserialization();
+            deserialization.DeserializationObject(FILENAME);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public static class SerializationWriteAndRead {
+    public static class SerializationAndDeserialization {
 
-        public SerializationWriteAndRead() {
+        public SerializationAndDeserialization() {
         }
 
-        public static void writeObject(List<Task> taskList, String fileName) {
+        public static void SerializationObject(List<Task> taskList, String fileName) {
 
             try {
                 FileOutputStream fos = new FileOutputStream(fileName);
@@ -44,7 +44,7 @@ public class SerializationTask {
             }
         }
 
-        public static void readObject(String fileName) throws ClassNotFoundException {
+        public static void DeserializationObject(String fileName) throws ClassNotFoundException {
 
             try {
                 FileInputStream fis = new FileInputStream(fileName);
