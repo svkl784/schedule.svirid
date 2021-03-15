@@ -1,4 +1,4 @@
-package domain.enums;
+package domain.task.enums;
 
 public enum Category {
         WORK("Work"),

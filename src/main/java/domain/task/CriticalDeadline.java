@@ -1,24 +1,34 @@
-package domain.schedule;
+package domain.task;
 
 import exception.ParseExceptionDeadLine;
 
-public class CriticalDeadline extends Task{
+public class CriticalDeadline extends Task {
     String criticalDeadline;
     TaskRepeat taskRepeat;
 
     public CriticalDeadline(TaskRepeat taskRepeat, String criticalDeadline){
         super();
-        try {
             this.taskRepeat = taskRepeat;
             this.criticalDeadline = criticalDeadline;
-            if (!criticalDeadline.matches("^(0[1-9]|[12][0-9]|3[01])[ /](0[1-9]|1[012])[ /](19|20)\\d\\d$")) // сравниниваю верный ли введне формат даты (dd/mm/yyyy)
-            { throw new ParseExceptionDeadLine(criticalDeadline);
-            }
-        } catch (ParseExceptionDeadLine e) {
-            System.out.println(e);
-            System.exit(1);
         }
+
+    public void correctDateEntry() {
+        System.out.println("-----------Correct criticalDeadline entry-------------");
+        try {
+        if (!criticalDeadline.matches("^(19|20)\\d\\d[ -](0[1-9]|1[012])[ -](0[1-9]|[12][0-9]|3[01])$")) // сравниниваю верный ли введне формат даты (dd/mm/yyyy)
+        { throw new ParseExceptionDeadLine(criticalDeadline);
         }
+        else {
+            System.out.println("Correct criticalDeadline: "+getCriticalDeadline());
+        }
+    } catch (ParseExceptionDeadLine e) {
+        System.out.println(e);
+        System.exit(1);
+    }
+        finally {
+            System.out.println("------------------------------------------------------");
+        }
+    }
 
     @Override
     public String toString() {

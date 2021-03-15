@@ -1,4 +1,4 @@
-package domain.interfaces;
+package domain.users;
 
 public interface UserService {
     void userInfo();

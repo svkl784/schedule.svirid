@@ -1,18 +1,23 @@
 package application;
 
-import domain.enums.Category;
-import domain.enums.Priority;
-import domain.schedule.*;
-import domain.schedule.User;
-import domain.serialization.SerializationTask;
-import domain.task_list.TaskList;
-import exception.PasswordException;
+import domain.task.CriticalDeadline;
+import domain.task.TaskRepeat;
+import domain.task.enums.Category;
+import domain.task.enums.Priority;
+import domain.users.User;
+import domain.task.serialization.SerializationTask;
+import domain.task.task_list.TaskList;
+import domain.users.UserList;
+import domain.users.seralization.SerializationUsers;
 
 
 import java.io.Serializable;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 
 public class Application implements Serializable {
     public static final String FILENAME = "schedule.txt";
+
     public static void main(String[] args) {
 
         System.out.println("------------Welcome to Natalia's schedule--------------");
@@ -22,26 +27,27 @@ public class Application implements Serializable {
                     "Event",
                     Priority.HIGH,
                     Category.WORK,
-                    "07/03/2021",
+                    LocalDate.of(2021, 03, 18),
                     "Meeting with the boss in the office",
-                    "15/03/2021");
+                    LocalDate.of(2021, 05, 16));
             TaskRepeat taskRepeat2 = new TaskRepeat(
                     "Personal",
                     Priority.MEDIUM,
                     Category.PERSONAL,
-                    "01/03/2021",
+                    LocalDate.of(2021, 03, 18),
                     "JIM'S BIRTHDAY",
-                    "09/03/2021");
+                    LocalDate.of(2021, 03, 17));
             TaskRepeat taskRepeat3 = new TaskRepeat(
                     "Exam",
                     Priority.HIGH,
                     Category.STUDY,
-                    "04/03/2021",
+                    LocalDate.of(2021, 07, 18),
                     "Exam in philosophy",
-                    "NOT REPEAT");
+                    LocalDate.of(2022, 12, 12));
 
-            CriticalDeadline criticalDeadline1 = new CriticalDeadline(taskRepeat2, "28/02/2021");
+            CriticalDeadline criticalDeadline1 = new CriticalDeadline(taskRepeat2, "2021-12-13");
             System.out.println(criticalDeadline1);
+            criticalDeadline1.correctDateEntry();
             taskRepeat1.dateLineNow();
             taskRepeat2.dateLineNow();
             taskRepeat3.dateLineNow();
@@ -57,10 +63,17 @@ public class Application implements Serializable {
                     "Nataliya",
                     "svk",
                     465456);
+//            UserList.addList(user);
             user.userInfo();
             SerializationTask.writeTasks(TaskList.getTaskList());
             SerializationTask.readTask(FILENAME);
-        } catch (Exception e ) {
+            SerializationUsers.writeUsers(UserList.getUsersList());
+            SerializationUsers.readUsers(FILENAME);
+
+        } catch (DateTimeException e) {
+            System.out.println("INCORRECT DATE INPUT!");
+        }
+        catch (Exception e) {
             e.printStackTrace();
         } finally {
             System.out.println("-------------------Good Bye--------------------------");

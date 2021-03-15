@@ -1,9 +1,9 @@
-package domain.schedule;
+package domain.users;
 
 
-import domain.interfaces.UserService;
+import java.io.Serializable;
 
-public class User  {
+public class User implements Serializable {
     private final String name;
     private final String login;
     private final int password;

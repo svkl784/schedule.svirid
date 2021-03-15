@@ -1,6 +1,6 @@
-package domain.task_list;
+package domain.task.task_list;
 
-import domain.schedule.Task;
+import domain.task.Task;
 
 import java.text.Collator;
 import java.util.Collections;
