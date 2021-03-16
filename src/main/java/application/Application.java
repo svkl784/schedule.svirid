@@ -16,7 +16,8 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 
 public class Application implements Serializable {
-    public static final String FILENAME = "schedule.txt";
+    public static final String FILENAME1 = "schedule.txt";
+    public static final String FILENAME2 = "users.txt";
 
     public static void main(String[] args) {
 
@@ -59,16 +60,18 @@ public class Application implements Serializable {
             TaskList.printList();
             TaskList.filterByListLengthTaskName();
             TaskList.printList();
-            User.Builder<String, Integer> user = new User.Builder<>(
-                    "Nataliya",
-                    "svk",
-                    465456);
-//            UserList.addList(user);
+            User<?> user = new User.Builder<>()
+                    .enterName("Nataliya")
+                    .enterLogin("svk")
+                    .enterPassword(564465)
+                    .enterId("55666944")
+                    .build();
+            UserList.addList(user);
             user.userInfo();
             SerializationTask.writeTasks(TaskList.getTaskList());
-            SerializationTask.readTask(FILENAME);
+            SerializationTask.readTask(FILENAME1);
             SerializationUsers.writeUsers(UserList.getUsersList());
-            SerializationUsers.readUsers(FILENAME);
+            SerializationUsers.readUsers(FILENAME2);
 
         } catch (DateTimeException e) {
             System.out.println("INCORRECT DATE INPUT!");

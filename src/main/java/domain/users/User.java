@@ -1,75 +1,93 @@
 package domain.users;
 
 
+import exception.PasswordException;
+
 import java.io.Serializable;
+import java.util.Objects;
 
-public class User implements Serializable {
-    private final String name;
-    private final String login;
-    private final int password;
+public class User<T> implements UserService, Serializable {
+    private static final long SERIAL_VERSION_UID = 1L;
+    private  String name;
+    private String login;
+    private T password;
+    private  T id;
 
-    public User(Builder builder)  {
-            name = builder.name;
-            login = (String) builder.login;
-            password = (int) builder.password;
+
+    public User(String name, String login, T password, T id) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
+        this.id = id;
     }
 
-    public static class Builder<T, V> implements UserService   {
-        private final String name;
-        private final T login;
-        private final V password;
+    public User() {
+    }
 
-        public Builder(String name, T login, V password)  {
-            this.name = name;
-                this.login = login;
-                this.password = password;
-        }
 
-        public User build() {
-            return new User(this);
-        }
 
     @Override
-        public void userInfo() {
-            System.out.println(
-                    "---------------Information on user--------------------" + '\n' +
-                            "Name: " + name + '\n' +
-                            "Login: " + login + '\n' +
-                            "Password: " + "******" + '\n' +
-                            "-----------------------------------------------------");
-        }
-
-
-        @Override
-        public String toString() {
-            return "Builder: " + '\n' +
-                    "Name: " + name + '\n' +
-                    "Login: " + login + '\n' +
-                    "Password: " + password + '\n';
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Builder<String, Integer> user = (Builder) o;
-            return name != null && name.equals(user.name) &&
-                    login != null && login.equals(user.login)
-                    && password == user.password;
-        }
-
-        @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + ((name == null) ? 0 : name.hashCode());
-            result = prime * result + ((login == null) ? 0 : login.hashCode());
-            result = prime * result + (int) password;
-            return result;
-        }
-
+    public void userInfo() {
+        System.out.println(
+                "---------------Information on user--------------------" + '\n' +
+                        "Name: " + name + '\n' +
+                        "Login: " + login + '\n' +
+                        "Password: " + "******" + '\n' +
+                        "-----------------------------------------------------");
     }
 
+    public static class Builder<T> extends User {
+
+        private User<T> userBuilder;
+        public Builder () {
+            userBuilder = new User<>();
+        }
+
+        public Builder<T> enterName(String name) {
+            userBuilder.name=name;
+            return this;
+        }
+        public Builder<T> enterLogin(String login) {
+            userBuilder.login=login;
+            return this;
+        }
+        public Builder<T> enterPassword(T password) {
+            userBuilder.password=password;
+            return this;
+        }
+        public Builder<T> enterId(T id) {
+            userBuilder.id=id;
+            return this;
+        }
+        public User<T> build() {
+            return userBuilder;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "User " + "\n" +
+                "name:" + name + "\n" +
+                "login:" + login + "\n" +
+                "password:" + password + "\n" +
+                "id:" + id + "\n";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return name != null && name.equals(user.name) &&
+                login != null && login.equals(user.login) &&
+                password == user.password &&
+                id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, login, password, id);
+    }
 
     public String getName() {
         return name;
@@ -79,7 +97,11 @@ public class User implements Serializable {
         return login;
     }
 
-    public int getPassword() {
+    public T getPassword() {
         return password;
+    }
+
+    public T getId() {
+        return id;
     }
 }
