@@ -21,35 +21,6 @@ public class TaskRepeat extends Task {
     }
 
 
-//    @Override
-//    public void correctDateEntry() {
-//        super.correctDateEntry();
-//       try {
-//           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-//           String repeatDateTaskToString = repeatDateTask.format(formatter);
-//        String notRepeat = "00/00/0000";
-//        if (repeatDateTaskToString.equals(notRepeat)) {
-//            System.out.println("NOT REPEAT");
-//            return;
-//        } else {
-//            Timer timer = new Timer();
-//            SimpleDateFormat format = new SimpleDateFormat();
-//            format.applyPattern("dd/MM/yyyy");
-//            Date date = format.parse(repeatDateTaskToString);
-//            timer.schedule(new TimerTask() {
-//                public void run() {
-//                    if ((format.format(date)).equals(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()))) {
-//                        System.out.println("Today task \""+getTaskName() +"\" repeat! " + new Date());
-//                    }}
-//            }, date);
-//        }
-//    }
-//        catch (ParseException e){
-//        System.out.println("INCORRECT TASK_REPEAT_DATE FORMAT INTRODUCED!!!"+"Task name: "+getTaskName());
-//        System.exit(1);
-//    }
-//    }
-
     @Override
     public String toString() {
         return "Task name: " + getTaskName() + '\n' +

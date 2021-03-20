@@ -9,6 +9,7 @@ import domain.task.serialization.SerializationTask;
 import domain.task.task_list.TaskList;
 import domain.users.UserList;
 import domain.users.seralization.SerializationUsers;
+import exception.PasswordException;
 
 
 import java.io.Serializable;
@@ -60,14 +61,23 @@ public class Application implements Serializable {
             TaskList.printList();
             TaskList.filterByListLengthTaskName();
             TaskList.printList();
-            User<?> user = new User.Builder<>()
+            User<?> user1 = new User.Builder<>()
                     .enterName("Nataliya")
                     .enterLogin("svk")
                     .enterPassword(564465)
-                    .enterId("55666944")
+                    .enterId("556669rfg44")
                     .build();
-            UserList.addList(user);
-            user.userInfo();
+            User<?> user2 = new User.Builder<>()
+                    .enterName("Alexander")
+                    .enterLogin("kim")
+                    .enterPassword(8978899)
+                    .enterId("457lf987tws")
+                    .build();
+            UserList.addList(user1);
+            UserList.addList(user2);
+            user1.userInfo();
+            user2.userInfo();
+            UserList.printList();
             SerializationTask.writeTasks(TaskList.getTaskList());
             SerializationTask.readTask(FILENAME1);
             SerializationUsers.writeUsers(UserList.getUsersList());

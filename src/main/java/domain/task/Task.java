@@ -24,25 +24,12 @@ public abstract class Task implements TaskService, Comparable<Task>, Serializabl
     }
 
     public Task(String taskName, Priority priority, Category category, LocalDate deadline)  {
-//        try {
 
             this.taskName = taskName;
             this.priority = priority;
             this.category = category;
             this.deadline = deadline;
     }
-
-//    @Override
-//    public void correctDateEntry() {
-////              try {
-////                  if (!deadlineToString.matches("^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/](19|20)\\d\\d$")) // сравниниваю верный ли введне формат даты (dd/mm/yyyy)
-////            { throw new ParseExceptionDeadLine(deadlineToString);
-////            }
-////        } catch (ParseExceptionDeadLine e) {
-////            System.out.println(e);
-////            System.exit(1);
-////        }
-//    }
 
     @Override
     public boolean performed() {
