@@ -26,7 +26,7 @@ public class User<T> implements UserService, Serializable {
             throw new PasswordException();
         }}
      catch (PasswordException e){
-         System.out.println("!11111111111111111111111111");;
+         System.out.println(e);;
      }
 }
 

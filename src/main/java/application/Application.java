@@ -46,7 +46,6 @@ public class Application implements Serializable {
                     LocalDate.of(2021, 07, 18),
                     "Exam in philosophy",
                     LocalDate.of(2022, 12, 12));
-
             CriticalDeadline criticalDeadline1 = new CriticalDeadline(taskRepeat2, "2021-12-13");
             System.out.println(criticalDeadline1);
             criticalDeadline1.correctDateEntry();
