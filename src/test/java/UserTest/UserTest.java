@@ -54,7 +54,7 @@ public class UserTest {
 //    public void passwordShouldThrowPasswordException(){
 //        User user4 = new User("Nataliya", "svk", 5655646, "56452ghh54");
 //        User user5 = new User("Alexander", "kim", 52, "54746jm458");
-//    }  // не могу понять, почему тест не работает
+//    }  // не могу понять, почему тест не работает, пишет ошибку на мой exception, разберусь еще
 }
 
 

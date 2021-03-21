@@ -42,6 +42,6 @@ public class UsersTest {
 //        assumeThat(name, notNullValue());
 //        String actual= User.createUsers(name);
 //        System.out.println(String.format("Actual: %s \n", actual));
-//        assertThat(actual, is(allOf(containsString(name)));
+//        assertThat(actual, is(allOf(containsString(name))); //тема в проработке. еще допишу код
     }
 }
