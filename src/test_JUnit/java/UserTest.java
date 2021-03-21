@@ -1,6 +1,3 @@
-package UserTest;
-
-
 import domain.users.User;
 import exception.PasswordException;
 import org.junit.Assert;

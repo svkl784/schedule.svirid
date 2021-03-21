@@ -1,4 +1,3 @@
-package UserTest;
 import domain.users.User;
 import org.junit.Assert;
 import org.junit.BeforeClass;
