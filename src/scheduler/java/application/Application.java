@@ -85,8 +85,6 @@ public class Application implements Serializable {
         } catch (DateTimeException e) {
             System.out.println("INCORRECT DATE INPUT!");
         }
-
-
         catch (Exception e) {
             e.printStackTrace();
         } finally {
