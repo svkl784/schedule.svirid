@@ -1,11 +1,13 @@
 import domain.users.User;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.theories.DataPoint;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.util.Arrays;
@@ -21,15 +23,19 @@ public class UsersTest {
     private static User user1;
     private static User user2;
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @BeforeClass
     public static void createUsers() {
         user1 = new User("Nataliya", "svk", 56646, "56452ghh54");
         user2 = new User("Alexander", "kim", 46843, "54746jm458");
     }
+    @DataPoint
+    public static String userName = "Nataliya";
 
     @DataPoints
-    public static String[] usersName() {
+    public static String[] usersNames() {
         return new String[]{ user1.getName(), user2.getName()};
     }
 
