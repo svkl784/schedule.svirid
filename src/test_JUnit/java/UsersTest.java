@@ -1,5 +1,4 @@
 import domain.users.User;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.experimental.theories.DataPoints;
@@ -9,8 +8,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNotNull;
 import static org.junit.Assume.assumeThat;
 
@@ -30,7 +27,7 @@ public class UsersTest {
 
     @DataPoints
     public static String[] usersNames() {
-        return new String[]{ user1.getName(), user2.getName()};
+        return new String[]{user1.getName(), user2.getName()};
     }
 
     @Theory
@@ -39,8 +36,10 @@ public class UsersTest {
         assumeNotNull(name);
         assumeThat(name, notNullValue());
     }
+
     @DataPoints
-    public static String[] usersLogin() { return new String[]{ user1.getLogin(), user2.getLogin()};
+    public static String[] usersLogin() {
+        return new String[]{user1.getLogin(), user2.getLogin()};
     }
 
     @Theory
@@ -48,5 +47,17 @@ public class UsersTest {
         System.out.println(String.format("Testing with login %s ", login));
         assumeNotNull(login);
         assumeThat(login, notNullValue());
+    }
+
+    @DataPoints
+    public static int[] usersPassword() {
+        return new int[]{(int) user1.getPassword(), (int) user2.getPassword()};
+    }
+
+    @Theory
+    public void testUsersPassword(int password) throws Exception {
+        System.out.println(String.format("Testing with password %d ", password));
+        assumeNotNull(password);
+        assumeThat(password, notNullValue());
     }
 }

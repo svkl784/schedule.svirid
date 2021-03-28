@@ -1,10 +1,6 @@
 import domain.users.User;
 import exception.PasswordException;
 import org.junit.*;
-import org.junit.experimental.theories.Theories;
-import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-
 import java.util.ArrayList;
 import java.util.List;
 
