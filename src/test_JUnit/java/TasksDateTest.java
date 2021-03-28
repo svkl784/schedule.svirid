@@ -1,4 +1,3 @@
-import org.junit.AfterClass;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.runner.RunWith;
@@ -24,10 +23,7 @@ public class TasksDateTest {
         date.set(2021,05,30);
         assertThat(testedDate.formatDate(date.getTime()), is("2021-05-30"));
     }
-    @AfterClass
-    public static void tearDown() {
-        System.out.println("Tests finished");
-    }
+
 
     public class LocalizedDateService {
 

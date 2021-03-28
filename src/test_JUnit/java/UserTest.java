@@ -10,7 +10,6 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@RunWith(Theories.class)
 public class UserTest {
     private static User user1;
     private static User user2;

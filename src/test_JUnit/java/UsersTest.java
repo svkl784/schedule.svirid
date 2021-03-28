@@ -2,15 +2,11 @@ import domain.users.User;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;
-import org.junit.Test;
-import org.junit.experimental.theories.DataPoint;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -31,8 +27,6 @@ public class UsersTest {
         user1 = new User("Nataliya", "svk", 56646, "56452ghh54");
         user2 = new User("Alexander", "kim", 46843, "54746jm458");
     }
-    @DataPoint
-    public static String userName = "Nataliya";
 
     @DataPoints
     public static String[] usersNames() {
@@ -40,13 +34,19 @@ public class UsersTest {
     }
 
     @Theory
-    public void testUsersName (String name) throws Exception {
-        Assert.assertEquals("Nataliya", user1.getName());
-//        System.out.println(String.format("Testing with %s and %s", name));
-//        assumeNotNull(name);
-//        assumeThat(name, notNullValue());
-//        String actual= User.createUsers(name);
-//        System.out.println(String.format("Actual: %s \n", actual));
-//        assertThat(actual, is(allOf(containsString(name))); //тема в проработке. еще допишу код
+    public void testUsersNames(String name) throws Exception {
+        System.out.println(String.format("Testing with name %s and login %s", name));
+        assumeNotNull(name);
+        assumeThat(name, notNullValue());
+    }
+    @DataPoints
+    public static String[] usersLogin() { return new String[]{ user1.getLogin(), user2.getLogin()};
+    }
+
+    @Theory
+    public void testUsersLogin(String login) throws Exception {
+        System.out.println(String.format("Testing with login %s ", login));
+        assumeNotNull(login);
+        assumeThat(login, notNullValue());
     }
 }
